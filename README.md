@@ -1,4 +1,4 @@
-# MorseAcademy
+# Kripto (MorseAcademy)
 
 Kriptoloji dersi için Morse alfabesi öğretim platformu — gamification, Caesar şifreleme ve telegraf simülatörü.
 
@@ -8,7 +8,7 @@ Kriptoloji dersi için Morse alfabesi öğretim platformu — gamification, Caes
 | -------- | ------------------------------------------ |
 | Frontend | React (Vite), Tailwind CSS v4, Lucide React |
 | Backend  | FastAPI, SQLAlchemy, JWT (PyJWT)           |
-| Database | PostgreSQL                                 |
+| Database | SQLite (production) / PostgreSQL (optional) |
 | AI Lab   | OpenCV + MediaPipe (visual Morse stubs)    |
 
 ## Project Structure
@@ -34,23 +34,17 @@ MorseAcademy/
 
 ## Quick Start
 
-### 1. PostgreSQL
-
-```sql
-CREATE DATABASE morseacademy;
-```
-
-### 2. Backend (one-time setup)
+### 1. Backend (one-time setup)
 
 ```bash
 cd backend
 python -m venv .venv
 .venv\Scripts\activate          # Windows
 pip install -r requirements.txt
-copy .env.example .env          # edit DATABASE_URL & SECRET_KEY
+copy .env.example .env          # edit SECRET_KEY if needed
 ```
 
-### 3. Run app (backend + frontend)
+### 2. Run app (backend + frontend)
 
 ```bash
 cd frontend
