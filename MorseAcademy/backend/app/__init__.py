@@ -1,1 +1,0 @@
-"""MorseAcademy backend application."""
