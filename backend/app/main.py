@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import text
+from sqlalchemy import inspect, text
 
 from app.core.config import settings
 from app.core.database import Base, engine
@@ -10,12 +10,18 @@ from app.routes import auth, morse, quiz
 
 
 def _ensure_quiz_score_level_column() -> None:
+    """Eski veritabanlarına level sütunu ekler — SQLite ve PostgreSQL uyumlu."""
+    inspector = inspect(engine)
+    if "quiz_scores" not in inspector.get_table_names():
+        return
+
+    column_names = {col["name"] for col in inspector.get_columns("quiz_scores")}
+    if "level" in column_names:
+        return
+
     with engine.begin() as conn:
         conn.execute(
-            text(
-                "ALTER TABLE quiz_scores "
-                "ADD COLUMN IF NOT EXISTS level INTEGER NOT NULL DEFAULT 1"
-            )
+            text("ALTER TABLE quiz_scores ADD COLUMN level INTEGER NOT NULL DEFAULT 1")
         )
 
 
