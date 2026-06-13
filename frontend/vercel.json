@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://morse-academy.onrender.com/:path*"
+    }
+  ]
+}
