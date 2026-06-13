@@ -1,0 +1,11 @@
+# Render (production) — kök dizinden: pip install -r requirements.txt
+# SQLite kullanır; PostgreSQL / OpenCV bu deploy için gerekmez.
+
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+sqlalchemy>=2.0.36
+pyjwt>=2.9.0
+bcrypt>=4.0.1,<5.0.0
+python-multipart>=0.0.12
+pydantic-settings>=2.6.0
+email-validator>=2.2.0
